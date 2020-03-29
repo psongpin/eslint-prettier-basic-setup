@@ -6,6 +6,7 @@ This repo documents the basic setup for ESLint with Airbnb config, Prettier, Hus
 
 Follow project installation guide: https://create-react-app.dev/docs/getting-started/
 
+
 ### ESLint
 
 - Run `npm install eslint --save-dev` to install ESLint to local project folder.
@@ -26,7 +27,7 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
   - Would you like to install them now with npm? **Yes**
   
 - It will generate a `.eslintrc.json` file with some initial configs. I prefer to rename my file with `.eslintrc` as preference.
-- Add `"airbnb/hooks"` in `"extends"` property in `.eslintrc.json/.eslintrc`to make react hooks linting rules work.
+- Add `"airbnb/hooks"` in `extends` property in `.eslintrc.json/.eslintrc`to make react hooks linting rules work.
 - Add this rule in the `.eslintrc.json/.eslintrc` file. This will allow React JSX format in JS files:
 ```
 "rules": {
@@ -38,5 +39,39 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
   ]
 }
 ```
-- Any additional rule overrides to the linter shall be added to the "rules" property.
-- in `package.json`, add `"lint": "eslint 'src/**/*.{js,jsx}' --fix"` just incase you want to do linting manually across the codebase.
+- Any additional rule overrides to the linter shall be added to the `rules` property.
+- in `package.json`, add the following `scripts` just incase you want to do linting manually across the codebase:
+```
+"lint": "eslint 'src/**/*.{js,jsx}'",
+"lint:fix": "eslint 'src/**/*.{js,jsx}' --fix"
+```
+
+
+### Prettier
+
+- Install the following packages as dev dependencies: `npm i prettier eslint-config-prettier eslint-plugin-prettier --save-dev`
+- Update `extends` in your .eslintrc file as follows. Add `plugin:prettier/recommended`:
+```
+"extends": [
+  "plugin:react/recommended",
+  "airbnb",
+  "airbnb/hooks",
+  "plugin:prettier/recommended"
+],
+```
+- If you don’t like the default Prettier configuration, you can create a `.prettierrc` file. Here's my configuration:
+```
+{
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": false
+}
+```
+- Add the following `script` in `package.json` in case you want to manually format files accross the codebase: `"format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"`
