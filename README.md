@@ -74,4 +74,33 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
   "useTabs": false
 }
 ```
-- Add the following `script` in `package.json` in case you want to manually format files accross the codebase: `"format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"`
+- Add the following `script` in `package.json` in case you want to manually format files accross the codebase: `"format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"`.
+
+
+### Husky
+
+- Add husky to dev dependencies `npm i husky --save-dev`.
+- Create `.huskyrc` file in the root of the project. This is where all husky configs will be placed.
+- Add the following in the `.huskyrc`:
+```
+{
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+- This will allow us to do a script command before doing a commit. the `lint-staged` script will contain the commands that should be done before commit. Check the next section for setting up lint-staged.
+
+
+### Lint-Staged
+
+- Add lint-staged to dev dependencies `npm i lint-staged --save-dev`.
+- Create `.lintstagedrc` file in the root of the project. This is where all lint-staged configs will be placed.
+- Add the following in the `.lintstagedrc`:
+```
+{
+  "*.js": ["eslint --fix"],
+  "**/*.+(js|jsx|json|css)": ["prettier --write", "git add"]
+}
+```
+- This will lint the js files, format the js, jsx, json or css files then re-add it before doing a git commit.
