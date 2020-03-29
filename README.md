@@ -104,3 +104,17 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
 }
 ```
 - This will lint the js files, format the js, jsx, json or css files then re-add it before doing a git commit.
+
+
+### VSCode
+
+- In Visual Studio Code go to View ->Extensions.
+- Search for prettier code formatter and ESLint
+- Prettier: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- ESLint: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- Restart/Reload if needed.
+- In VSCode settings change or add the following:
+```
+"editor.formatOnSave": true,
+"editor.defaultFormatter": "esbenp.prettier-vscode"
+```
