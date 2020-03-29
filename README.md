@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic Linting and Formatter Setup on CRA
 
-## Available Scripts
+This repo documents the basic setup for ESLint with Airbnb config, Prettier, Husky, Lint-Staged with React on CRA.
 
-In the project directory, you can run:
+### Create React App
 
-### `yarn start`
+Follow project installation guide: https://create-react-app.dev/docs/getting-started/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### ESLint
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Run `npm install eslint --save-dev` to install ESLint to local project folder.
+- Run `npx eslint --init` or `./node_modules/.bin/eslint --init` to initialize eslint setup.
+- During the initialization, it will prompt you to answer some questions essential to the need of the project. Here are the answers that I use for the setup (answers in bold):
+  
+  - How would you like to use ESLint? **To check syntax, find problems, and enforce code style**
+  - What type of modules does your project use? **JavaScript modules (import/export)**
+  - Which framework does your project use? **React**
+  - Does your project use TypeScript? **No**
+  - Where does your code run? **Browser**
+  - How would you like to define a style for your project? **Use a popular style guide**
+  - Which style guide do you want to follow? **Airbnb (https://github.com/airbnb/javascript)**
+  - What format do you want your config file to be in? **JSON**
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- After answering the question, It will prompt you to install some missing dependency.
+  
+  - Would you like to install them now with npm? **Yes**
+  
+- It will generate a `.eslintrc.json` file with some initial configs. I prefer to rename my file with `.eslintrc` as preference.
+- Add `"airbnb/hooks"` in `"extends"` property in `.eslintrc.json/.eslintrc`to make react hooks linting rules work.
+- Add this rule in the `.eslintrc.json/.eslintrc` file. This will allow React JSX format in JS files:
+```
+"rules": {
+  "react/jsx-filename-extension": [
+    1,
+    {
+      "extensions": [".js", ".jsx"]
+    }
+  ]
+}
+```
+- Any additional rule overrides to the linter shall be added to the "rules" property.
+- in `package.json`, add `"lint": "eslint 'src/**/*.{js,jsx}' --fix"` just incase you want to do linting manually across the codebase.
