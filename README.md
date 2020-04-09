@@ -27,6 +27,7 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
   - Would you like to install them now with npm? **Yes**
   
 - It will generate a `.eslintrc.json` file with some initial configs. I prefer to rename my file with `.eslintrc` as preference.
+- Run `npm install --save-dev babel-eslint` then set `"parser": "babel-eslint",` in the `.eslintrc.json/.eslintrc` file.
 - Add `"airbnb/hooks"` in `extends` property in `.eslintrc.json/.eslintrc`to make react hooks linting rules work.
 - Add this rule in the `.eslintrc.json/.eslintrc` file. This will allow React JSX format in JS files:
 ```
@@ -62,7 +63,7 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
 - If you don’t like the default Prettier configuration, you can create a `.prettierrc` file. Here's my configuration:
 ```
 {
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
@@ -100,7 +101,7 @@ Follow project installation guide: https://create-react-app.dev/docs/getting-sta
 ```
 {
   "*.js": ["eslint --fix"],
-  "**/*.+(js|jsx|json|css)": ["prettier --write", "git add"]
+  "**/*.+(js|jsx|json|css)": ["prettier --write"]
 }
 ```
 - This will lint the js files, format the js, jsx, json or css files then re-add it before doing a git commit.
